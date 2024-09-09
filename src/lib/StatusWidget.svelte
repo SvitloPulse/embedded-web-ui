@@ -1,0 +1,43 @@
+<script lang="ts">
+    import type { Status } from "../types";
+    export let status: Status = "pending";
+
+    const statusText = {
+        ok: "ОК",
+        error: "Більше 3 невдалих спроб відправити статус у Світлобот підряд",
+        warning: "Невдалі спроби відправити статус у Світлобот",
+        pending: "Очікування першої відправки статусу на сервер Світлобот",
+    };
+</script>
+
+<div class="flex">
+    <div class={"status " + status} />
+    <div>{statusText[status]}</div>
+</div>
+
+<style>
+    .flex {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+    .status {
+		width: 16px;
+		height: 16px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+    .status.ok {
+		background-color: green;
+	}
+	.status.error {
+		background-color: red;
+	}
+	.status.warning {
+		background-color: orange;
+	}
+	.status.pending {
+		background-color: gray;
+	}
+</style>
