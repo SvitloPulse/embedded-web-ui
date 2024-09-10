@@ -31,7 +31,7 @@
 </script>
 
 {#if !lastPing}
-    <center><span aria-busy="true">Відправка статусу очікується впродовж наступних 1.5 хвилини.</span></center>
+    <span aria-busy="true">Відправка статусу очікується впродовж наступних 90 секунд.</span>
 {:else}
     <p>{elapsedString}</p>
 {/if}

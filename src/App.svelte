@@ -17,6 +17,7 @@
   }
 
   onMount(() => {
+    fetchUpdate();
     interval = setInterval(fetchUpdate, 3000);
   });
 
