@@ -14,9 +14,12 @@ export default defineConfig({
       ext: ".gz", // Output file extension
     }),
   ],
-  // server: {
-  //   proxy: {
-  //     "/api": { target: "http://svitlopulse.local/", changeOrigin: true },
-  //   },
-  // },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://svitlopulse.local/",
+        changeOrigin: true,
+      },
+    },
+  },
 });

@@ -7,4 +7,5 @@ export interface ServerStateUpdate {
     rssi: number;
     temperature: number;
     version: string;
+    chip_model: string;
 }

@@ -32,39 +32,46 @@
   });
 </script>
 
-<main class="container">
+<main class="container" style="max-width: 600px">
   <h3>SvitloPulse</h3>
   {#if error}
-    <span aria-busy="true">Помилка з'єднання з пристроєм. Перепідключаємося...</span>
+    <span aria-busy="true"
+      >Помилка з'єднання з пристроєм. Перепідключаємося...</span
+    >
   {:else if !serverState}
     <center><span aria-busy="true">Завантаження...</span></center>
   {:else}
-    <table>
-      <tbody>
-        <tr>
-          <td>Стан:</td>
-          <td><StatusLabel status={serverState.status} /></td>
-        </tr>
-        <tr>
-          <td>Останній пінг:</td>
-          <td><ElapsedTimeWidget lastPing={serverState.lastPing} /></td>
-        </tr>
-        <tr>
-          <td>WiFi мережа:</td>
-          <td>
-            <WifiWidget ssid={serverState.ssid} rssi={serverState.rssi} />
-          </td>
-        </tr>
-        <tr>
-          <td>Температура:</td>
-          <td>{serverState.temperature} °C</td>
-        </tr>
-        <tr>
-          <td>Версія прошивки:</td>
-          <td>{serverState.version}</td>
-        </tr>
-      </tbody>
-    </table>
+    
+      <table>
+        <tbody>
+          <tr>
+            <td>Стан:</td>
+            <td><StatusLabel status={serverState.status} /></td>
+          </tr>
+          <tr>
+            <td>Останній пінг:</td>
+            <td><ElapsedTimeWidget lastPing={serverState.lastPing} /></td>
+          </tr>
+          <tr>
+            <td>WiFi мережа:</td>
+            <td>
+              <WifiWidget ssid={serverState.ssid} rssi={serverState.rssi} />
+            </td>
+          </tr>
+          <tr>
+            <td>Температура:</td>
+            <td>{serverState.temperature} °C</td>
+          </tr>
+          <tr>
+            <td>Версія прошивки:</td>
+            <td>{serverState.version}</td>
+          </tr>
+          <tr>
+            <td>Чип:</td>
+            <td>{serverState.chip_model}</td>
+          </tr>
+        </tbody>
+      </table>
   {/if}
 </main>
 
