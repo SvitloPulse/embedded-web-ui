@@ -1,11 +1,23 @@
 <script lang="ts">
-    export let signal: number;
+    export let rssi: number;
     export let ssid: string;
     
     let bars: string[] = [];
-    function setBars(s: number) {
+    function setBars(_rssi: number) {
+		let signal = 0;
+		if (_rssi < -90) {
+			signal = 0;
+		} else if (_rssi < -75) {
+			signal = 1;
+		} else if (_rssi < -65) {
+			signal = 2;
+		} else if (_rssi < -55) {
+			signal = 3;
+		} else {
+			signal = 4;
+		}
         for (let i=1; i<=4; i++) {
-            if (s >= i) {
+            if (signal >= i) {
                 bars.push(`bar bar${i} active`);
             } else {
                 bars.push(`bar bar${i}`);
@@ -14,7 +26,7 @@
         bars = bars;
     }
 
-    $: setBars(signal);
+    $: setBars(rssi);
 
 </script>
 

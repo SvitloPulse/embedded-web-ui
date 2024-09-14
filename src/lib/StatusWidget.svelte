@@ -4,9 +4,10 @@
 
     const statusText = {
         ok: "ОК",
-        error: "Більше 3 невдалих спроб відправити статус у Світлобот підряд",
+        error: "3 або більше невдалих спроб відправити статус у Світлобот підряд",
+        net_err: "Помилка мережі",
         warning: "Невдалі спроби відправити статус у Світлобот",
-        pending: "Очікування першої відправки статусу на сервер Світлобот",
+        pending: "Очікується перша відправка статусу",
     };
 </script>
 
@@ -34,6 +35,9 @@
 	.status.error {
 		background-color: red;
 	}
+    .status.net_err {
+        background-color: red;
+    }
 	.status.warning {
 		background-color: orange;
 	}

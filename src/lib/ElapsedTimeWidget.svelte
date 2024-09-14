@@ -2,7 +2,6 @@
     export let lastPing: number | null;
     let millisecondsDiff = 0;
     let elapsedString = "";
-    let pending = true;
 
     function updateElapsed(lastUpdate: number | null) {
         if (!lastUpdate) {
@@ -31,7 +30,7 @@
 </script>
 
 {#if !lastPing}
-    <span aria-busy="true">Відправка статусу очікується впродовж наступних 90 секунд.</span>
+    <span aria-busy="true">&nbsp;</span>
 {:else}
     <p>{elapsedString}</p>
 {/if}
