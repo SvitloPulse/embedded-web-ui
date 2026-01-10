@@ -50,7 +50,7 @@
           </tr>
           <tr>
             <td>Останній пінг:</td>
-            <td><ElapsedTimeWidget lastPing={serverState.lastPing} /></td>
+            <td><ElapsedTimeWidget lastPingUs={serverState.last_ping_us} uptimeUs={serverState.uptime_us} /></td>
           </tr>
           <tr>
             <td>WiFi мережа:</td>

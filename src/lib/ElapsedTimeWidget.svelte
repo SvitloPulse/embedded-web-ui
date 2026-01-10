@@ -1,16 +1,26 @@
 <script lang="ts">
     import { onMount, onDestroy } from "svelte";
 
-    export let lastPing: number | null;
-    let elapsedString = "";
-    let interval: number;
+    export let lastPingUs: number | null;
+    export let uptimeUs: number | null;
 
-    function updateElapsed(lastUpdate: number | null) {
-        if (!lastUpdate) {
+    let elapsedString = "";
+    let interval: ReturnType<typeof setInterval>;
+    const MICROSECONDS_IN_SECOND = 1_000_000;
+
+    function updateElapsed(lastUpdate: number | null, currentUptime: number | null) {
+        if (lastUpdate == null || currentUptime == null) {
+            elapsedString = "Очікується...";
             return;
         }
-        let nowTimestamp = Date.now() / 1000;
-        const seconds = Math.floor(nowTimestamp - lastUpdate);
+
+        const elapsedUs = currentUptime - lastUpdate;
+        if (elapsedUs < 0) {
+            elapsedString = "Очікується...";
+            return;
+        }
+
+        const seconds = Math.floor(elapsedUs / MICROSECONDS_IN_SECOND);
         const minutes = Math.floor(seconds / 60);
         const hours = Math.floor(minutes / 60);
         const days = Math.floor(hours / 24);
@@ -26,11 +36,11 @@
         }
     }
 
-    $: updateElapsed(lastPing);
+    $: updateElapsed(lastPingUs, uptimeUs);
 
     onMount(() => {
         interval = setInterval(() => {
-            updateElapsed(lastPing);
+            updateElapsed(lastPingUs, uptimeUs);
         }, 3000);
     });
 
@@ -41,7 +51,7 @@
 
 </script>
 
-{#if !lastPing}
+{#if lastPingUs == null || uptimeUs == null}
     <span aria-busy="true">Очікується...</span>
 {:else}
     <p>{elapsedString}</p>
