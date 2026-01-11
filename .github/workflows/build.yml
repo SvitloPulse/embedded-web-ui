@@ -53,6 +53,9 @@ jobs:
         with:
           name: webpage.gz
           path: artifacts
+      
+      - name: Find artifact
+        run: ls -la artifacts
     
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/')
