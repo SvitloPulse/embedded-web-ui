@@ -49,7 +49,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v7
         with:
           name: webpage.gz
           path: artifacts
@@ -60,6 +60,6 @@ jobs:
         with:
           draft: true
           files: |
-            artifacts/webpage.gz
+            **/webpage.gz
         env:
           GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
